@@ -41,6 +41,8 @@ int main()
     auto p = UniquePtr<MyClass>::make(10);
     auto l = std::move(v);
 
+
+
     k = func(std::move(l));
 
     k->print();

@@ -13,7 +13,7 @@ public:
         this->ptr = nullptr;
     }
 
-    UniquePtr(nullptr_t)
+    explicit UniquePtr(nullptr_t)
     {
         ptr = nullptr;
     }
