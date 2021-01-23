@@ -76,6 +76,13 @@ public:
         return ptr;
     }
 
+    T* release(void)
+    {
+        T* retPtr = ptr;
+        ptr = nullptr;
+        return retPtr;
+    }
+
     template<class... Args> static UniquePtr<T> make( Args&&... args )
     {
         return UniquePtr<T>(new T(args...));

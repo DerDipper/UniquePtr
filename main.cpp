@@ -46,8 +46,10 @@ int main()
 
     k->print();
 
-    i = &kp;
-    std::cout<<i<<&kp<<std::endl;
+    std::cout
+    << k.get() << std::endl
+    << k.release() << std::endl 
+    << k.get() << std::endl;
 
     return 0;
 }
