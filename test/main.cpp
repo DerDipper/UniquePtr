@@ -1,5 +1,6 @@
 #include "UniquePtr.h"
 #include <utility>
+#include <cassert>
 #include <iostream>
 
 class MyClass
@@ -7,60 +8,48 @@ class MyClass
     int value;
 public:
 
-    int otherValue;
-
-    void print()
+    int getValue()
     {
-        std::cout<<"MyClass: \n    Value: "<< value << std::endl;
+        return value;
     }
+    void setValue(int value)
+    {
+        this->value = value;
+    }
+
     MyClass(int value)
     {
         this->value = value;
-        std::cout<<"Created MyClass with Value: "<< value << std::endl;
-    }
-
-    ~MyClass()
-    {
-        std::cout<<"Deleted MyClass with Value: "<< value << std::endl;
     }
 };
-
-UniquePtr<MyClass> func(UniquePtr<MyClass> p)
-{
-    p->print();
-
-    return p;
-}
 
 
 int main()
 {
-    MyClass* pC;
-    auto v = UniquePtr<MyClass>::make(4);
-    auto k = UniquePtr<MyClass>::make(9);
-    auto p = UniquePtr<MyClass>::make(10);
-    auto l = std::move(v);
+    MyClass* pTemp;
+    auto val5 = UniquePtr<MyClass>::make(5);
+    auto val10 = UniquePtr<MyClass>::make(10);
+    auto val20 = UniquePtr<MyClass>::make(20);
+
+    assert(5 == val5->getValue());
+    assert(10 == val10->getValue());
+
+    swap(val5, val10);
+
+    assert(10 == val5->getValue());
+    assert(5 == val10->getValue());
+
+    assert(val20 == val20);
+    val20 = nullptr;
+    assert(val20 == nullptr);
+    assert(nullptr == val20);
 
 
+    val20 = std::move(val10);
 
-    k = func(std::move(l));
+    pTemp = val20.get();
 
-    k->print();
-
-    std::cout
-    << k.get() << std::endl
-    << (pC = k.release()) << std::endl 
-    << k.get() << std::endl;
-
-    delete pC;
+    assert(pTemp == val20.release());
     
-    p.swap(k);
-    k->print();
-    swap(p,k);
-    p->print();
-
-    std::cout<<(p==p)<<std::endl;
-    std::cout<<(k==nullptr)<<std::endl;
-    std::cout<<(nullptr==k)<<std::endl;
     return 0;
 }
