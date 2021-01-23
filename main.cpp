@@ -35,6 +35,8 @@ UniquePtr<MyClass> func(UniquePtr<MyClass> p)
 
 int main()
 {
+    int kp;
+    int* i;
     auto v = UniquePtr<MyClass>::make(4);
     auto k = UniquePtr<MyClass>::make(9);
 
@@ -44,8 +46,8 @@ int main()
 
     k->print();
 
-    std::cout<<k<<std::endl;
-    std::cout<<l<<std::endl;    
+    i = &kp;
+    std::cout<<i<<&kp<<std::endl;
 
     return 0;
 }

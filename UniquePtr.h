@@ -3,6 +3,7 @@
 
 template<typename T> class UniquePtr
 {
+
 private:
     T* ptr;
 
@@ -12,11 +13,6 @@ private:
     }
 
 public:
-    ~UniquePtr()
-    {
-        delete ptr;
-    }
-    
     UniquePtr()
     {
         this->ptr = nullptr;
@@ -34,6 +30,13 @@ public:
         p.ptr = nullptr;
     }
 
+    UniquePtr(UniquePtr const& p) = delete;
+
+    ~UniquePtr()
+    {
+        delete ptr;
+    }
+
     T& operator*() const
     {
         return *ptr;
@@ -42,15 +45,6 @@ public:
     T* operator->() const
     {
         return ptr;
-    }
-
-    UniquePtr(UniquePtr const& p) = delete;
-
-    UniquePtr& operator=(const UniquePtr&) = delete;
-
-    operator bool() const
-    {
-        return (nullptr != ptr);
     }
 
     UniquePtr& operator=(UniquePtr&& rhs)
@@ -68,6 +62,18 @@ public:
 
         ptr = nullptr;
         return *this;
+    }
+
+    UniquePtr& operator=(const UniquePtr&) = delete;
+
+    explicit operator bool() const
+    {
+        return (nullptr != ptr);
+    }
+
+    T* get(void)
+    {
+        return ptr;
     }
 
     template<class... Args> static UniquePtr<T> make( Args&&... args )
