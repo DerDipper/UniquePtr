@@ -7,11 +7,6 @@ template<typename T> class UniquePtr
 private:
     T* ptr;
 
-    UniquePtr(T* ptr)
-    {
-        this->ptr = ptr;
-    }
-
 public:
     UniquePtr()
     {
@@ -28,6 +23,11 @@ public:
     {
         this->ptr = p.ptr;
         p.ptr = nullptr;
+    }
+
+    UniquePtr(T* ptr)
+    {
+        this->ptr = ptr;
     }
 
     UniquePtr(UniquePtr const& p) = delete;
