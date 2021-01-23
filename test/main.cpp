@@ -57,5 +57,8 @@ int main()
     swap(p,k);
     p->print();
 
+    std::cout<<(p==p)<<std::endl;
+    std::cout<<(k==nullptr)<<std::endl;
+    std::cout<<(nullptr==k)<<std::endl;
     return 0;
 }
