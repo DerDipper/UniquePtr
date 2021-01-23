@@ -49,11 +49,13 @@ int main()
     << k.get() << std::endl
     << (pC = k.release()) << std::endl 
     << k.get() << std::endl;
+
     delete pC;
+    
     p.swap(k);
     k->print();
-
-
+    swap(p,k);
+    p->print();
 
     return 0;
 }

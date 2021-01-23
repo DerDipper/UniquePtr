@@ -96,4 +96,9 @@ public:
     }
 };
 
+template<typename T> void swap(UniquePtr<T>& lhs, UniquePtr<T>& rhs)
+{
+    lhs.swap(rhs);
+}
+
 
