@@ -83,6 +83,13 @@ public:
         return retPtr;
     }
 
+    void swap(UniquePtr& rhs)
+    {
+        T* temp = this->ptr;
+        this->ptr = rhs.ptr;
+        rhs.ptr = temp;
+    }
+
     template<class... Args> static UniquePtr<T> make( Args&&... args )
     {
         return UniquePtr<T>(new T(args...));

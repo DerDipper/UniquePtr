@@ -35,11 +35,10 @@ UniquePtr<MyClass> func(UniquePtr<MyClass> p)
 
 int main()
 {
-    int kp;
-    int* i;
+    MyClass* pC;
     auto v = UniquePtr<MyClass>::make(4);
     auto k = UniquePtr<MyClass>::make(9);
-
+    auto p = UniquePtr<MyClass>::make(10);
     auto l = std::move(v);
 
     k = func(std::move(l));
@@ -48,8 +47,13 @@ int main()
 
     std::cout
     << k.get() << std::endl
-    << k.release() << std::endl 
+    << (pC = k.release()) << std::endl 
     << k.get() << std::endl;
+    delete pC;
+    p.swap(k);
+    k->print();
+
+
 
     return 0;
 }
