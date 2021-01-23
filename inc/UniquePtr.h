@@ -15,7 +15,6 @@ public:
 
     UniquePtr(nullptr_t)
     {
-        delete ptr;
         ptr = nullptr;
     }
 
