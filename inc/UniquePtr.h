@@ -1,6 +1,8 @@
+#pragma once
+/*** Includes ***************************************************************/
 #include <cstddef>
 
-
+/*** Class ******************************************************************/
 template<typename T> class UniquePtr
 {
 
@@ -8,6 +10,7 @@ private:
     T* ptr;
 
 public:
+    /* Constructors */
     UniquePtr()
     {
         this->ptr = nullptr;
@@ -31,11 +34,13 @@ public:
 
     UniquePtr(UniquePtr const& p) = delete;
 
+    /* Destructors */
     ~UniquePtr()
     {
         delete ptr;
     }
 
+    /* Operators */
     T& operator*() const
     {
         return *ptr;
@@ -70,11 +75,13 @@ public:
         return (nullptr != ptr);
     }
 
+    /* Getters */
     T* get(void)
     {
         return ptr;
     }
 
+    /* Methods */
     T* release(void)
     {
         T* retPtr = ptr;
@@ -89,17 +96,20 @@ public:
         rhs.ptr = temp;
     }
 
+    /* Static Methods */
     template<class... Args> static UniquePtr<T> make( Args&&... args )
     {
         return UniquePtr<T>(new T(args...));
     }
 };
 
+/*** External Functions *****************************************************/
 template<typename T> void swap(UniquePtr<T>& lhs, UniquePtr<T>& rhs)
 {
     lhs.swap(rhs);
 }
 
+/*** External Operators *****************************************************/
 template<typename TLHS, typename TRHS> bool operator==(UniquePtr<TLHS>& lhs, UniquePtr<TRHS>& rhs)
 {
     return (lhs.get() == rhs.get());
