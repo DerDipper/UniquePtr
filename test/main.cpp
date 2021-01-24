@@ -55,7 +55,7 @@ int main()
     assert(u2 > u1);
     assert(u2 >= u2);
     assert(u1 < u2);
-
+    assert(u1 <= u2);
 
     val20 = std::move(val10);
 
