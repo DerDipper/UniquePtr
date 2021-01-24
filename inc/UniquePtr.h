@@ -115,4 +115,20 @@ template<typename TRHS> bool operator==(nullptr_t, UniquePtr<TRHS>& rhs)
     return (nullptr == rhs.get());
 }
 
+template<typename TLHS, typename TRHS> bool operator!=(UniquePtr<TLHS>& lhs, UniquePtr<TRHS>& rhs)
+{
+    return (lhs.get() != rhs.get());
+}
+
+template<typename TLHS> bool operator!=(UniquePtr<TLHS>& lhs, nullptr_t)
+{
+    return (lhs.get() != nullptr);
+}
+
+template<typename TRHS> bool operator!=(nullptr_t, UniquePtr<TRHS>& rhs)
+{
+    return (nullptr != rhs.get());
+}
+
+
 

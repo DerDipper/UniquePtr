@@ -44,6 +44,10 @@ int main()
     assert(val20 == nullptr);
     assert(nullptr == val20);
 
+    assert(val5 != val20);
+    assert(val5 != nullptr);
+    assert(nullptr != val5);
+
 
     val20 = std::move(val10);
 
