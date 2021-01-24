@@ -135,5 +135,9 @@ template<typename TLHS, typename TRHS> bool operator>(UniquePtr<TLHS>& lhs, Uniq
     return (lhs.get() > rhs.get());
 }
 
+template<typename TLHS, typename TRHS> bool operator>=(UniquePtr<TLHS>& lhs, UniquePtr<TRHS>& rhs)
+{
+    return (lhs.get() >= rhs.get());
+}
 
 

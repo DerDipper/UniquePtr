@@ -53,6 +53,7 @@ int main()
     assert(nullptr != val5);
 
     assert(u2 > u1);
+    assert(u2 >= u2);
 
 
     val20 = std::move(val10);
