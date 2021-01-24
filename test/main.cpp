@@ -27,6 +27,10 @@ public:
 int main()
 {
     MyClass* pTemp;
+    MyClass m1(1);
+    MyClass m2(2);
+    UniquePtr<MyClass> u1(&m1);
+    UniquePtr<MyClass> u2(&m2);
     auto val5 = UniquePtr<MyClass>::make(5);
     auto val10 = UniquePtr<MyClass>::make(10);
     auto val20 = UniquePtr<MyClass>::make(20);
@@ -48,12 +52,17 @@ int main()
     assert(val5 != nullptr);
     assert(nullptr != val5);
 
+    assert(u2 > u1);
+
 
     val20 = std::move(val10);
 
     pTemp = val20.get();
 
     assert(pTemp == val20.release());
+
+    u1.release();
+    u2.release();
     
     return 0;
 }
