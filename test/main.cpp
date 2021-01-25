@@ -1,7 +1,6 @@
 #include "UniquePtr.h"
 #include <utility>
 #include <cassert>
-#include <iostream>
 
 class MyClass
 {
