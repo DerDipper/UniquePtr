@@ -32,8 +32,17 @@ int main()
     UniquePtr<MyClass> u1(&m1);
     UniquePtr<MyClass> u2(&m2);
     auto val5 = UniquePtr<MyClass>::make(5);
+    UniquePtr<int> valInt(new int[3]);
     auto val10 = UniquePtr<MyClass>::make(10);
     auto val20 = UniquePtr<MyClass>::make(20);
+
+    valInt[0] = 4;
+    valInt[1] = valInt[0];
+    valInt[2] = 3;
+
+    assert(4 == valInt[0]);
+    assert(4 == valInt[1]);
+    assert(valInt[2] == 3);
 
     assert(5 == val5->getValue());
     assert(10 == val10->getValue());

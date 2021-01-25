@@ -3,7 +3,7 @@
 #include <cstddef>
 
 /*** Class ******************************************************************/
-template<typename T> class UniquePtr
+template<typename T, size_t N = 0> class UniquePtr
 {
 
 private:
@@ -73,6 +73,11 @@ public:
     explicit operator bool() const
     {
         return (nullptr != ptr);
+    }
+
+    T& operator[](size_t index)
+    {
+        return ptr[index];
     }
 
     /* Getters */
